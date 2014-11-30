@@ -27,7 +27,7 @@ Template Name: Published Works Page
     }
     $attachments = get_posts($args);
     uasort($attachments, 'compare');
-    $attachments = array_chunk($attachments, 3)
+    $attachments = array_chunk($attachments, 3);
     ?>
 
     <?php if ($attachments[0]) { ?>

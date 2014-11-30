@@ -14,7 +14,19 @@ $args = array(
     'post_status' => null,
     'post_parent' => null // any parent
     ); 
+function compare($a, $b) {
+    $a = get_post_meta($a->ID, 'order', true);
+    $b = get_post_meta($b->ID, 'order', true);
+
+    if ($a == $b) { return 0; }
+    if ($a == "") { $a = "zzzzzzz"; }
+    if ($b == "") { $b = "zzzzzzz"; }
+    
+    return ($a < $b) ? -1 : 1;
+}
 $attachments = get_posts($args);
+uasort($attachments, 'compare');
+$attachments = array_chunk($attachments, 3);
 ?>
 
 <?php if ($attachments) { ?>
